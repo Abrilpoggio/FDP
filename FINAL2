@@ -1,102 +1,161 @@
-Algoritmo desarrolladoress
-	definir nombres, lenguaje, pais, aux, buscado, auxx como caracter 
-	definir n, proyectos, contpython, i, j, finn, inicio, medio   como entero 
-	definir calificacionprom, promedio, suma  como real 
+Algoritmo final2
+	
+	definir n, i,dni,  edad, monto, aux, buscado, auxnom, auxedad, auxmonto, inicio, finn, medio como entero 
+	definir apynom, actividad como caracter 
 	definir encontrado como logico 
-	escribir 'Ingrese la cantidad de desarrolladores a guardar: '
+	
+	escribir 'Ingrese la cantidad de participantes que va a cargar: '
 	leer n 
 	
-	dimension nombres[n] 
-	dimension lenguaje[n]
-	dimension pais[n]
-	dimension proyectos[n]
-	dimension calificacionprom[n]
+	dimension apynom[n]
+	dimension dni[n]
+	dimension edad[n]
+	dimension monto[n]
+	dimension chocolatada[n]
+	dimension baile[n]
+	dimension caminata[n]
 	
-	contpython<- 0
-	promedio <- 0
-	suma<- 0 
+	contcaminata <- 0
+	contbaile <- 0
+	contchocolatada <- 0
 	
-	para i <- 1 hasta n hacer 
-		escribir 'ingrese su nombre completo: '
-		leer nombres[i] 
-		escribir 'ingrese su lenguaje principal de programacion (Python, JavaScript, c#, Go)'
-		leer lenguaje[i]
-		escribir 'ingrese su pais de residencia: '
-		leer pais[i]
-		escribir 'ingrese la cantidad de proyectos finalizados: '
-		leer proyectos[i] 
-		escribir 'calificacion promedio otorgada por los clientes (escala del 1 al 5): '
-		leer calificacionprom[i]
+	para i <- 1 hasta n hacer  
+		escribir 'Ingrese su apellido y nombre: ' 
+		leer apynom[i]
+		escribir 'Ingrese su dni: '
+		leer dni[i]
+		escribir 'Ingrese su edad: ' 
+		leer edad[i]
+		escribir 'Ingrese el monto a voluntad que aporta: '
+		leer monto[i]
+		escribir 'Ingrese la actividad a la que se inscribe: '
+		leer actividad 
 		
-		si lenguaje[i] == 'python'  Entonces
-			contpython <- contpython+1
-			suma <- suma + calificacionprom[i]
+		si actividad = 'caminata' entonces 
+			contcaminata <- contcaminata+1 
+			caminata[contcaminata] <- i 
 		finsi
-	finpara 
-	
-	si contpython > 0 Entonces
-		promedio <- ( suma/ contpython ) 
-	sino 
-		promedio <- 0 
-	finsi 
-	
-	Para i <- 1 hasta n-1 Hacer
-		para j<-1  hasta n-i hacer 
-			si pais[j] > pais[j+1] Entonces
-				aux<- pais[j]
-				pais[j] <- pais[j+1]
-				pais[j+1] <- aux
-			sino 
-			Si pais[j] == pais[j+1] Y nombres[j] > nombres[j+1] Entonces
-				aux <- nombres[j] 
-				nombres[j] <- nombres[j+1]
-				nombres[j+1] <- aux 
-					finsi 
-				FinSi
-		FinPara
-	FinPara
-	escribir 'Lista ordenada por pais, y dentro de cada pais, por nombre: '
-	para i <- 1 hasta n hacer 
-		escribir 'pais: ' pais[i], ' , nombre: ' nombres[i]
-	FinPara
-	
-	escribir 'La calificacion promedio de los desarrolladores cuyo lenguaje principal es Python es : ', promedio 
-	
-	para i <- 1 hasta n -1 hacer 
-		para j <- 1 hasta n-1 hacer 
-			si nombres[j] > nombres[j+1] Entonces
-				auxx <- nombres[j]
-				nombres[j] <- nombres[j+1]
-				nombres[j+1] <- auxx
-			FinSi
-		FinPara
-	FinPara
-	
-	buscado <- 'Ana Martinez'
-	inicio <- 1 
-    finn <- n
-    encontrado <- falso 
-	
-	mientras inicio <= finn y encontrado = falso hacer
-		medio <- trunc ((inicio + finn )/2)
-		si nombres[medio] = buscado entonces 
-			encontrado <- verdadero 
-		sino 
-			si nombres[medio] < buscado entonces 
-				inicio <- medio+1 
-			sino 
-				finn<- medio-1
-			FinSi
+		
+		si actividad = 'baile' Entonces
+			contbaile<- contbaile+1
+			baile[contbaile] <- i
 		FinSi
-	finmientras 
-	
-     si encontrado entonces 
-		escribir 'La desarrolladora ', buscado ' esta en la posicion: ', medio ' su lenguaje principal es: ' lenguaje[medio] 
-	sino 
-		si encontrado= falso  
-			escribir 'La desarrolladora ' buscado, ' no esta registrada'
+		
+	    si actividad = 'chocolatada' Entonces
+			contchocolatada<-contchocolatada+1
+			chocolatada[contchocolatada] <- i 
 		FinSi
-	FinSi
+		
+	FinPara
+	
+	ordenamiento(dni, apynom, edad, monto, n)
+	
+	escribir 'lista ordenada por dni:' 
+	para i <- 1 hasta n Hacer
+		escribir dni[i] 
+	FinPara
+	
+	escribir 'Ingrese el dni a buscar: '
+	leer buscado 
+	
+ 	inicio<-1
+	finn<- n 
+	encontrado<- falso
+	
+	busqueda(dni, n, buscado, encontrado, medio)
+	
+	si encontrado = verdadero Entonces
+		escribir 'el dni buscado es de : ', apynom[medio], ' , el monto abonado es de: ', monto[medio] 
+	sino 
+		escribir 'el dni ingresando no existe en el sistema'
+	finsi
 	
 FinAlgoritmo
+
+SubProceso ordenamiento(dni Por Referencia, apynom Por Referencia, edad Por Referencia, monto Por Referencia, n)
 	
+	definir i, j, aux, auxedad, auxmonto como entero
+	definir auxnom como caracter
+	
+	para i <- 1 hasta n-1 hacer 
+		para j <- 1 hasta n-i hacer
+			si dni[j] > dni[j+1] entonces
+				
+				aux <- dni[j]
+				dni[j] <- dni[j+1]
+				dni[j+1] <- aux
+				
+				auxnom <- apynom[j]
+				apynom[j] <- apynom[j+1]
+				apynom[j+1] <- auxnom
+				
+				auxedad <- edad[j]
+				edad[j] <- edad[j+1]
+				edad[j+1] <- auxedad
+				
+				auxmonto <- monto[j]
+				monto[j] <- monto[j+1]
+				monto[j+1] <- auxmonto
+				
+			FinSi
+		FinPara
+	FinPara
+	
+FinSubProceso
+
+
+
+SubProceso busqueda(dni, n, buscado, encontrado Por Referencia, medio Por Referencia)
+	
+	definir inicio, finn como entero
+	
+	inicio <- 1
+	finn <- n
+	encontrado <- falso
+	
+	mientras inicio <= finn y encontrado = falso hacer 
+		
+		medio <- trunc((inicio + finn)/2)
+		
+		si dni[medio] = buscado entonces
+			encontrado <- verdadero
+		sino 
+			si dni[medio] < buscado entonces
+				inicio <- medio +1
+			sino
+				finn <- medio-1
+			finsi 
+		finsi 
+		
+	finmientras
+	
+FinSubProceso
+
+///PUNTO2
+Algoritmo final2punto2
+    definir i como entero 
+	definir mat, buscado Como cadena
+	definir encontrado como logico 
+	
+	dimension mat[3,100] 
+	
+    buscado <- JM
+	leer buscado 
+	encontrado <- falso
+	
+    para i <- 1 hasta 3 hacer
+        si mat[i, 3] = buscado entonces
+            encontrado <- verdadero
+            escribir "JM fue encontrado en la fila: ", i
+        FinSi
+    FinPara
+	
+    si encontrado = verdadero entonces
+        escribir buscado, " asistió a la chocolatada."
+    sino
+        escribir buscado, " no asistió a la chocolatada."
+    FinSi
+	
+	escribir "La persona inscripta en caminata en el puesto 50 es: ", mat[1,50]
+	
+FinAlgoritmo 
