@@ -1,0 +1,118 @@
+1) Una empresa tecnológica realiza un seguimiento de sus desarrolladores freelance. De cada
+desarrollador se guarda:
+Nombre completo
+Lenguaje principal de programación (Python, JavaScript, C#, Go).
+País de residencia.
+Cantidad de proyectos finalizados.
+Calificación promedio otorgada por los clientes (escala de 1 a 5).
+Se pide desarrollar un programa que permita:
+a) Cargar los datos de los desarrolladores en la estructura correspondiente. La carga
+finaliza cuando el usuario lo indique.
+b) Calcular y mostrar la calificación promedio de los desarrolladores cuyo lenguaje
+principal es "Python".
+C) Mostrar un listado de todos los desarrolladores, ordenados por pais de residencia y,
+dentro de cada país, por nombre.
+d) Verificar si la desarrolladora llamada "Ana Martínez" está registrada. Si lo esta, mostrar su lenguaje principal y país de residencia. En caso contrario, indicar que no se encuentra registrada. (USAR BBIN)
+
+Algoritmo desarrolladoress
+	definir nombres, lenguaje, pais, aux, buscado, auxx como caracter 
+	definir n, proyectos, contpython, i, j, finn, inicio, medio   como entero 
+	definir calificacionprom, promedio, suma  como real 
+	definir encontrado como logico 
+	escribir 'Ingrese la cantidad de desarrolladores a guardar: '
+	leer n 
+	
+	dimension nombres[n] 
+	dimension lenguaje[n]
+	dimension pais[n]
+	dimension proyectos[n]
+	dimension calificacionprom[n]
+	
+	contpython<- 0
+	promedio <- 0
+	suma<- 0 
+	
+	para i <- 1 hasta n hacer 
+		escribir 'ingrese su nombre completo: '
+		leer nombres[i] 
+		escribir 'ingrese su lenguaje principal de programacion (Python, JavaScript, c#, Go)'
+		leer lenguaje[i]
+		escribir 'ingrese su pais de residencia: '
+		leer pais[i]
+		escribir 'ingrese la cantidad de proyectos finalizados: '
+		leer proyectos[i] 
+		escribir 'calificacion promedio otorgada por los clientes (escala del 1 al 5): '
+		leer calificacionprom[i]
+		
+		si lenguaje[i] == 'python'  Entonces
+			contpython <- contpython+1
+			suma <- suma + calificacionprom[i]
+		finsi
+	finpara 
+	
+	si contpython > 0 Entonces
+		promedio <- ( suma/ contpython ) 
+	sino 
+		promedio <- 0 
+	finsi 
+	
+	Para i <- 1 hasta n-1 Hacer
+		para j<-1  hasta n-i hacer 
+			si pais[j] > pais[j+1] Entonces
+				aux<- pais[j]
+				pais[j] <- pais[j+1]
+				pais[j+1] <- aux
+			sino 
+			Si pais[j] == pais[j+1] Y nombres[j] > nombres[j+1] Entonces
+				aux <- nombres[j] 
+				nombres[j] <- nombres[j+1]
+				nombres[j+1] <- aux 
+					finsi 
+				FinSi
+		FinPara
+	FinPara
+	escribir 'Lista ordenada por pais, y dentro de cada pais, por nombre: '
+	para i <- 1 hasta n hacer 
+		escribir 'pais: ' pais[i], ' , nombre: ' nombres[i]
+	FinPara
+	
+	escribir 'La calificacion promedio de los desarrolladores cuyo lenguaje principal es Python es : ', promedio 
+	
+	para i <- 1 hasta n -1 hacer 
+		para j <- 1 hasta n-1 hacer 
+			si nombres[j] > nombres[j+1] Entonces
+				auxx <- nombres[j]
+				nombres[j] <- nombres[j+1]
+				nombres[j+1] <- auxx
+			FinSi
+		FinPara
+	FinPara
+	
+	buscado <- 'Ana Martinez'
+	inicio <- 1 
+    finn <- n
+    encontrado <- falso 
+	
+	mientras inicio <= finn y encontrado = falso hacer
+		medio <- trunc ((inicio + finn )/2)
+		si nombres[medio] = buscado entonces 
+			encontrado <- verdadero 
+		sino 
+			si nombres[medio] < buscado entonces 
+				inicio <- medio+1 
+			sino 
+				finn<- medio-1
+			FinSi
+		FinSi
+	finmientras 
+	
+     si encontrado entonces 
+		escribir 'La desarrolladora ', buscado ' esta en la posicion: ', medio ' su lenguaje principal es: ' lenguaje[medio] 
+	sino 
+		si encontrado= falso  
+			escribir 'La desarrolladora ' buscado, ' no esta registrada'
+		FinSi
+	FinSi
+	
+FinAlgoritmo
+	
