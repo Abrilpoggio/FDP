@@ -1,0 +1,4 @@
+La Universidad cumplió 25 años, y dentro de los festejos se organizaron distintas actividades, dentro de ellas se abrieron inscripciones para una caminata, un concurso de baile y una chocolatada de cierre. Suponiendo que las actividades son aranceladas y requieren inscripción previa. Se pide:
+a- Cargar los datos suponiendo que tenemos una planilla para tal fin. Por cada participante se debe procesar apellido y nombre, DNI, edad y monto a voluntad que aporta
+b- Generar un vector nuevo por cada actividad con los asistentes.
+c- Determinar si una persona determinada participó de alguna actividad, buscarla por su DNI, si es así indicar de cual y el monto abonado. Utilizar procedimientos para el ordenamiento y la búsqueda binaria.
