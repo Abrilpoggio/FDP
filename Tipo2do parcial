@@ -1,0 +1,110 @@
+//  Examen tipo segundo parcial
+//Se tiene una lista de los inscriptos a un concurso de canto. De cada uno se tiene: apellido y nombre, edad, canción que interpretará y autor de la misma.
+//Se pide:
+//A - Definir la estructura necesaria para representar el problema y cargarla con los datos de cada concursante.
+//B - Calcular promedio de edad de los concursantes.
+//C - Crear una lista con los concursantes menores de 18 años.
+//D - Listado ordenado por apellido y nombre de todos les concursantes:
+//E - Determinar si existe al menos una canción cuya autora es Adele.
+//F - Listado ordenado por autores de las canciones que se interpretarán.
+//G - Determinar porcentaje de menores a 18 años sobre el total.
+
+Algoritmo concursodecanto
+
+	definir apynom, cancion, autor, apynommenores, aux, auxx, buscado como cadena
+	definir i, n, edad, contedad, j, inicio, finn, medio como entero
+	definir prom, porcentaje como real 
+	definir encontrado como logico 
+	escribir 'Ingrese la contidad de inscriptos al concurso: '
+	leer n 
+	dimension apynom[n]
+	dimension edad[n]
+	dimension cancion[n]
+	dimension autor[n]
+	
+	contedad <- 0 
+
+	para i <- 1 hasta n hacer 
+		escribir 'Ingrese el apellido y nombre del concursante: '
+		leer apynom[i]
+		escribir 'Ingrese la edad del concursante: '
+		leer edad[i]
+		escribir 'Ingrese la cancion que interpretara: '
+		leer cancion[i]
+		escribir 'Ingrese el autor de la cancion: '
+		leer autor[i]
+		
+		contedad <- edad[i] + contedad 
+	
+	FinPara
+    prom <- (contedad/ n ) 
+	
+	escribir ' el promedio de edades de los concursantes es de: ', prom 
+	escribir 'Los menores de 18 son '
+	
+	para i <- 1 hasta n hacer
+		si ( edad[i] < 18 ) entonces 
+			escribir apynom[i]
+		FinSi
+	FinPara
+	
+	para i <- 1 hasta n-1 hacer 
+		para j <- 1 hasta n-i hacer 
+			si apynom[j] > apynom[j+1] entonces 
+				aux <- apynom[j]
+				apynom[j] <- apynom[j+1]
+				apynom[j+1] <- aux 
+			FinSi
+		FinPara
+	FinPara
+	escribir 'Listado ordenado por apellido y nombre de los concursantes '
+	para i <- 1 hasta n hacer 
+		escribir apynom[i]
+	FinPara
+	
+	para i <- 1 hasta n-1 hacer 
+		para j <- 1 hasta n-i hacer 
+			si autor[j] > autor[j+1] Entonces
+				auxx<- autor[j] 
+				autor[j] <- autor[j+1] 
+				autor[j+1] <- auxx
+			FinSi
+		FinPara
+	FinPara
+	
+	buscado <- 'Adele'
+	inicio <-1 
+	finn<- n 
+	encontrado <- falso 
+	Mientras inicio <= finn y encontrado = falso hacer 
+		medio <- trunc ((inicio + finn)/2)
+		si autor[medio] = buscado Entonces
+			encontrado <- verdadero 
+		sino 
+			si autor[medio] < buscado entonces 
+				inicio <- medio + 1 
+			sino 
+				finn <- medio - 1
+			FinSi
+		FinSi
+	FinMientras
+	Si encontrado = verdadero entonces 
+		escribir 'Existe al menos una cancion cuya autora es Adele'
+	FinSi
+	
+	escribir 'listado ordenado por autores de las canciones que se interpretaran: '
+	para i <- 1 hasta n hacer 
+		escribir autor[i] , ' cancion: ' cancion[i]
+	FinPara
+	contedad <- 0 
+	para i <- 1 hasta n hacer 
+		si edad[i] < 18 entonces 
+			contedad <- contedad + 1
+		FinSi
+	FinPara
+	porcentaje <- (contedad/n ) * 100
+	
+	escribir 'El porcentaje de menores de 18 sobre el total es de : ' porcentaje '%'
+FinAlgoritmo
+
+	
