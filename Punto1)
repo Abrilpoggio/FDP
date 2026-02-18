@@ -1,18 +1,3 @@
-1) Una empresa tecnológica realiza un seguimiento de sus desarrolladores freelance. De cada
-desarrollador se guarda:
-Nombre completo
-Lenguaje principal de programación (Python, JavaScript, C#, Go).
-País de residencia.
-Cantidad de proyectos finalizados.
-Calificación promedio otorgada por los clientes (escala de 1 a 5).
-Se pide desarrollar un programa que permita:
-a) Cargar los datos de los desarrolladores en la estructura correspondiente. La carga
-finaliza cuando el usuario lo indique.
-b) Calcular y mostrar la calificación promedio de los desarrolladores cuyo lenguaje
-principal es "Python".
-C) Mostrar un listado de todos los desarrolladores, ordenados por pais de residencia y,
-dentro de cada país, por nombre.
-d) Verificar si la desarrolladora llamada "Ana Martínez" está registrada. Si lo esta, mostrar su lenguaje principal y país de residencia. En caso contrario, indicar que no se encuentra registrada. (USAR BBIN)
 
 Algoritmo desarrolladoress
 	definir nombres, lenguaje, pais, aux, buscado, auxx como caracter 
@@ -116,3 +101,36 @@ Algoritmo desarrolladoress
 	
 FinAlgoritmo
 	
+///PUNTO2 
+Algoritmo finalpunto2
+	definir matriz como real
+	definir i, cont como entero
+	definir porcentaje, mayor, filaMayor como real
+	
+	dimension matriz[30,4]
+	cont <- 0
+	
+	para i <- 1 hasta 30 hacer
+		si matriz[i,4] > 10000 entonces
+			cont <- cont + 1
+		finsi
+	finpara
+	
+	porcentaje <- (cont * 100) / 30
+	
+	escribir "El porcentaje de clientes con promedio mayor a $10.000 es: ", porcentaje, "%"
+	
+	mayor <- matriz[1,3]
+	filaMayor <- 1
+	
+	para i <- 2 hasta 30 hacer
+		si matriz[i,3] > mayor entonces
+			mayor <- matriz[i,3]
+			filaMayor <- i
+		finsi
+	finpara
+	
+	escribir "El cliente que más gastó está en la fila: ", filaMayor
+	escribir "Total gastado: $", mayor
+	
+FinAlgoritmo
