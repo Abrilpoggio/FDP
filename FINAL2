@@ -150,11 +150,11 @@ Algoritmo final2punto2
 	para i <-1 hasta 100 Hacer
 			si matriz[i,3] = buscado entonces
 				encontrado <- verdadero 
-				posj <- i 
+				posi <- i 
 			FinSi
 	FinPara
 	si encontrado = verdadero Entonces
-		escribir 'JM esta inscripto en la chocolatada, en la posicion ', posj
+		escribir 'JM esta inscripto en la chocolatada, en la posicion ', posi
 	sino 
 		escribir 'JM no fue hallado '
 	FinSi
