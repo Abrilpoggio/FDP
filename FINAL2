@@ -133,29 +133,33 @@ FinSubProceso
 
 ///PUNTO2
 Algoritmo final2punto2
-    definir i como entero 
-	definir mat, buscado Como cadena
+	definir buscado, buscado1, matriz como cadena
 	definir encontrado como logico 
+	definir posj, i, j como entero 
 	
-	dimension mat[3,100] 
+	dimension matriz[100,3]
 	
-    buscado <- JM
-	leer buscado 
-	encontrado <- falso
+	para i <- 1 hasta 100 hacer 
+		para j <- 1 hasta 3 hacer 
+			escribir 'Ingresar el nombre de participante el la posicion: ' i ' , ', j 
+			leer matriz[i,j]
+		FinPara
+	FinPara
+	buscado <- 'JM'
+	encontrado <- falso 
+	para i <-1 hasta 100 Hacer
+			si matriz[i,3] = buscado entonces
+				encontrado <- verdadero 
+				posj <- i 
+			FinSi
+	FinPara
+	si encontrado = verdadero Entonces
+		escribir 'JM esta inscripto en la chocolatada, en la posicion ', posj
+	sino 
+		escribir 'JM no fue hallado '
+	FinSi
 	
-    para i <- 1 hasta 3 hacer
-        si mat[i, 3] = buscado entonces
-            encontrado <- verdadero
-            escribir "JM fue encontrado en la fila: ", i
-        FinSi
-    FinPara
+	buscado1 <- matriz[50,1]
+	escribir 'En la caminata, en el puesto 50 esta inscripto ', buscado1
 	
-    si encontrado = verdadero entonces
-        escribir buscado, " asistió a la chocolatada."
-    sino
-        escribir buscado, " no asistió a la chocolatada."
-    FinSi
-	
-	escribir "La persona inscripta en caminata en el puesto 50 es: ", mat[1,50]
-	
-FinAlgoritmo 
+FinAlgoritmo
