@@ -1,0 +1,177 @@
+Algoritmo Organizacion
+	
+	Tipo Voluntario
+		nombre: Cadena
+		edad: Entero
+		actividad: Cadena
+		proyecto: Cadena
+		beneficiarios: Entero
+	FinTipo
+	
+	Definir voluntarios Como Voluntario
+	Dimension voluntarios[100]
+	
+	Definir n, i Como Entero
+	Definir buscado, op Como Cadena
+	
+	
+	n <- 0
+	op <- "si"
+	
+	Mientras op = "si" Hacer
+		
+		n <- n + 1
+		
+		Escribir "Nombre:"
+		Leer voluntarios[n].nombre
+		
+		Escribir "Edad:"
+		Leer voluntarios[n].edad
+		
+		Escribir "Actividad:"
+		Leer voluntarios[n].actividad
+		
+		Escribir "Proyecto:"
+		Leer voluntarios[n].proyecto
+		
+		Escribir "Beneficiarios:"
+		Leer voluntarios[n].beneficiarios
+		
+		Escribir "Desea continuar? (si/no)"
+		Leer op
+		
+	FinMientras
+	
+	OrdenarPorNombre(voluntarios, n)
+	
+	Escribir "Ingrese el nombre a buscar:"
+	Leer buscado
+	
+	BuscarVoluntario(voluntarios, n, buscado)
+	
+	PromedioAsistenciaSocial(voluntarios, n)
+
+	OrdenarPorActividadYNombre(voluntarios, n)
+	
+	Escribir "----- LISTADO DE VOLUNTARIOS -----"
+	
+	Para i <- 1 Hasta n
+		Escribir "Nombre: ", voluntarios[i].nombre
+		Escribir "Actividad: ", voluntarios[i].actividad
+	FinPara
+		
+FinAlgoritmo
+
+
+
+SubProceso OrdenarPorNombre(v Por Referencia, n Por Valor)
+	
+	Definir i, j Como Entero
+	Definir aux Como Voluntario
+	
+	Para i <- 1 Hasta n-1
+		Para j <- 1 Hasta n-i
+			Si v[j].nombre > v[j+1].nombre Entonces
+				
+				aux <- v[j]
+				v[j] <- v[j+1]
+				v[j+1] <- aux
+				
+			FinSi
+		FinPara
+	FinPara
+	
+FinSubProceso
+
+
+
+SubProceso BuscarVoluntario(v Por Valor, n Por Valor, buscado Por Valor)
+	
+	Definir izq, der, medio Como Entero
+	Definir encontrado Como Logico
+	
+	izq <- 1
+	der <- n
+	encontrado <- Falso
+	
+	Mientras izq <= der Y encontrado = Falso Hacer
+		
+		medio <- Trunc((izq + der) / 2)
+		
+		Si v[medio].nombre = buscado Entonces
+			encontrado <- Verdadero
+		Sino
+			Si buscado < v[medio].nombre Entonces
+				der <- medio - 1
+			Sino
+				izq <- medio + 1
+			FinSi
+		FinSi
+		
+	FinMientras
+	
+	Si encontrado Entonces
+		Escribir "Actividad: ", v[medio].actividad
+		Escribir "Proyecto: ", v[medio].proyecto
+	Sino
+		Escribir "El voluntario no se encuentra registrado."
+	FinSi
+	
+FinSubProceso
+
+
+
+SubProceso PromedioAsistenciaSocial(v Por Valor, n Por Valor)
+	
+	Definir i, suma, contador Como Entero
+	Definir promedio Como Real
+	
+	suma <- 0
+	contador <- 0
+	
+	Para i <- 1 Hasta n
+		Si v[i].actividad = "asistencia social" Entonces
+			suma <- suma + v[i].edad
+			contador <- contador + 1
+		FinSi
+	FinPara
+	
+	Si contador > 0 Entonces
+		promedio <- suma / contador
+		Escribir "Promedio de edades en asistencia social: ", promedio
+	Sino
+		Escribir "No hay voluntarios en asistencia social."
+	FinSi
+	
+FinSubProceso
+
+
+
+SubProceso OrdenarPorActividadYNombre(v Por Referencia, n Por Valor)
+	
+	Definir i, j Como Entero
+	Definir aux Como Voluntario
+	
+	Para i <- 1 Hasta n-1
+		Para j <- 1 Hasta n-i
+			
+			Si v[j].actividad > v[j+1].actividad Entonces
+				
+				aux <- v[j]
+				v[j] <- v[j+1]
+				v[j+1] <- aux
+				
+			Sino
+				Si v[j].actividad = v[j+1].actividad Y v[j].nombre > v[j+1].nombre Entonces
+					
+					aux <- v[j]
+					v[j] <- v[j+1]
+					v[j+1] <- aux
+					
+				FinSi
+			FinSi
+			
+		FinPara
+	FinPara
+	
+FinSubProceso
