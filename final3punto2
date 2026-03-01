@@ -1,0 +1,74 @@
+Tipo Jugador
+    victorias : entero
+    empates : entero
+    derrotas : entero
+    partidas : entero
+    puntos : entero
+FinTipo
+
+Algoritmo Videojuegos
+    
+    Definir jugadores Como Jugador
+    Definir porcentaje Como Real
+    
+    Dimension jugadores[15]
+    
+    // La matriz ya está cargada según el enunciado,
+    // pero dejamos el procedimiento por estructura correcta
+    CargarJugadores(jugadores)
+    
+    porcentaje <- CalcularPorcentaje(jugadores)
+    
+    Escribir "El porcentaje de jugadores con más de 50 puntos es: ", porcentaje, "%"
+    
+FinAlgoritmo
+
+
+// PROCEDIMIENTO PARA CARGAR LOS JUGADORES(no lo pide )
+
+SubProceso CargarJugadores(jugadores Por Referencia)
+    
+    Definir i Como Entero
+    
+    Para i <- 1 Hasta 15 Hacer
+        
+        Escribir "Jugador ", i
+        
+        Escribir "Victorias:"
+        Leer jugadores[i].victorias
+        
+        Escribir "Empates:"
+        Leer jugadores[i].empates
+        
+        Escribir "Derrotas:"
+        Leer jugadores[i].derrotas
+        
+        Escribir "Partidas jugadas:"
+        Leer jugadores[i].partidas
+        
+        Escribir "Puntos:"
+        Leer jugadores[i].puntos
+        
+    FinPara
+    
+FinSubProceso
+
+
+Funcion porcentaje <- CalcularPorcentaje(jugadores)
+    
+    Definir i, cont Como Entero
+    Definir porcentaje Como Real
+    
+    cont <- 0
+    
+    Para i <- 1 Hasta 15 Hacer
+        
+        Si jugadores[i].puntos > 50 Entonces
+            cont <- cont + 1
+        FinSi
+        
+    FinPara
+    
+    porcentaje <- (cont / 15) * 100
+    
+FinFuncion
