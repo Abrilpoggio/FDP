@@ -12,9 +12,6 @@ Algoritmo Videojuegos
     Definir porcentaje Como Real
     
     Dimension jugadores[15]
-    
-    // La matriz ya está cargada según el enunciado,
-    // pero dejamos el procedimiento por estructura correcta
     CargarJugadores(jugadores)
     
     porcentaje <- CalcularPorcentaje(jugadores)
