@@ -87,24 +87,24 @@ FinSubProceso
 
 SubProceso BuscarVoluntario(v Por Valor, n Por Valor, buscado Por Valor)
 	
-	Definir izq, der, medio Como Entero
+	Definir finn, inicio, medio Como Entero
 	Definir encontrado Como Logico
 	
-	izq <- 1
-	der <- n
+	inicio <- 1
+	finn <- n
 	encontrado <- Falso
 	
-	Mientras izq <= der Y encontrado = Falso Hacer
+	Mientras inicio <= finn Y encontrado = Falso Hacer
 		
-		medio <- Trunc((izq + der) / 2)
+		medio <- Trunc((inicio + finn) / 2)
 		
 		Si v[medio].nombre = buscado Entonces
 			encontrado <- Verdadero
 		Sino
 			Si buscado < v[medio].nombre Entonces
-				der <- medio - 1
+				inicio <- medio - 1
 			Sino
-				izq <- medio + 1
+				finn <- medio + 1
 			FinSi
 		FinSi
 		
